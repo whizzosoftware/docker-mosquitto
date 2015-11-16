@@ -35,5 +35,7 @@ RUN buildDeps='gcc g++ libc6-dev libssl-dev uuid-dev make' \
 		&& rm -r /usr/src/mosquitto \
 		&& apt-get purge -y --auto-remove $buildDeps
 
+COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
+
 EXPOSE 1883
-CMD [ "mosquitto" ]
+CMD [ "mosquitto","-c","/etc/mosquitto/mosquitto.conf" ]
